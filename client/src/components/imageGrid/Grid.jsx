@@ -77,7 +77,7 @@ const Grid = (props) => {
                 animate={{ opacity: 1, }}
                 transition={{ duration: 0.75 }}
                 exit={{ opacity: 0 }}
-                className="flex bg-white justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                className="flex bg-blue-900 justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
               >
                 <motion.div className="relative w-auto mx-auto bg-gray-300 ">
                   <motion.div className="border-0 bg-gray-300 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
