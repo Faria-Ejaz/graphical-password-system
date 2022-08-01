@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { ImageGrid } from "./imageGrid";
 import { createApi } from "unsplash-js";
 import CryptoJS from "crypto-js";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { navigate } from "@reach/router";
 import DrawingCanvas from "./DrawingCanvas";
-import {imageText} from "./utils/helpers";
+import { imageText } from "./utils/helpers";
 import classnames from "classnames";
 
 const unsplash = createApi({
@@ -103,10 +103,12 @@ function RegistrationPage() {
     }
     const hashes = [];
     let passwordHints = [];
-    
+
     sequences.map((imageSelection) => {
       passwordHints.push(imageText(imageSelection.image));
-      hashes.push(hashingSHA(imageSelection.image, imageSelection.tileSequences));
+      hashes.push(
+        hashingSHA(imageSelection.image, imageSelection.tileSequences)
+      );
     });
 
     Promise.all(passwordHints).then(async (values) => {
@@ -170,12 +172,13 @@ function RegistrationPage() {
             "h-screen": isLoading,
           })}
         >
-          <form className="w-full md:w-1/3 bg-white rounded-lg"
+          <form
+            className="w-full md:w-1/3 bg-white rounded-lg"
             onSubmit={(e) => {
               e.preventDefault();
               if (roundNumber === 0 && !isHuman) {
                 setIsHuman(true);
-            getImages();
+                getImages();
               } else {
                 getImages();
               }
@@ -194,7 +197,7 @@ function RegistrationPage() {
                   <div className="flex items-center">
                     <i className="ml-3 fill-current text-gray-400 text-xs z-10 fas fa-user"></i>
                     <input
-                    className="-mx-6 px-8  w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+                      className="-mx-6 px-8  w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
                       htmlFor="name"
                       id="name"
                       type="text"
@@ -234,12 +237,22 @@ function RegistrationPage() {
                     />
                   </div>
                 </div>
-                <button
-                  className="w-full py-2 -ml-2.5 hover:bg-green-700 rounded-full bg-blue-900 text-gray-100  focus:outline-none"
-                  type="submit"
-                >
-                  Search Category
-                </button>
+                {roundNumber !== ROUNDS_COUNT ? (
+                  <button
+                    className="w-full py-2 -ml-2.5 hover:bg-green-700 rounded-full bg-blue-900 text-gray-100  focus:outline-none"
+                    type="submit"
+                  >
+                    Search Category
+                  </button>
+                ) : (
+                  <button
+                    className="w-full py-2 -ml-2.5 rounded-full bg-blue-900 text-gray-100 hover:bg-green-700 focus:outline-none"
+                    type="button"
+                    onClick={() => register()}
+                  >
+                    Confirm Registration
+                  </button>
+                )}
               </div>
             }
           </form>
@@ -247,33 +260,10 @@ function RegistrationPage() {
       </div>
 
       {roundNumber === ROUNDS_COUNT ? (
-        <div className="bg-blue-900">
-          <div
-            className={classnames("w-full flex items-center justify-center", {
-              "h-screen": isLoading,
-            })}
-          >
-            <form className="w-full md:w-1/3 bg-white rounded-lg">
-              <div className="flex font-bold justify-center mt-6">
-                <img
-                  className="h-20 w-20"
-                  src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg"
-                ></img>
-              </div>
-
-              <button
-                className="w-full py-2 -ml-2.5 rounded-full bg-blue-900 text-gray-100 hover:bg-green-700 focus:outline-none"
-                type="button"
-                onClick={() => register()}
-              >
-                Confirm Registration
-              </button>
-            </form>
-          </div>
-        </div>
+        <></>
       ) : (
         <>
-          {!isLoading && (
+          {roundNumber !== ROUNDS_COUNT && !isLoading && (
             <h2 className="text-3xl text-center text-gray-700 mb-4 p-5">
               Select Image for Graphical Password
             </h2>
