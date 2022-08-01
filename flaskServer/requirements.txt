@@ -1,0 +1,8 @@
+torch
+spacy
+
+transformers
+flask_cors
+
+flask
+torchvision
