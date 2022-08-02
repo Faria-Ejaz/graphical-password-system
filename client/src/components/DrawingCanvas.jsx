@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useRef } from "react";
 import CanvasDraw from "react-canvas-draw";
@@ -16,16 +17,14 @@ const customStyles = {
     display: 'flex',
     width: '40vw',
     border: 'none',
-    borderRadius: '10px'
+    borderRadius: '10px',
   },
 };
-function DrawingCanvas({ modalIsOpen, setIsOpen, onResult  }) {
-  // const [modalIsOpen, setIsOpen] = React.useState(isOpen);
+function DrawingCanvas({ modalIsOpen, setIsOpen, onResult, className }) {
   const canvasRef = useRef(null);
   const rand = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
   const handleSubmit = async () => {
-    /* const uri = refDraw[0].current.toDataURL();
-     */
+
     const data = canvasRef.current.canvasContainer.children[1].toDataURL();
     let imageBuffer = Buffer.from(data.slice(22), "base64");
     const worker = await createWorker({});
@@ -37,12 +36,11 @@ function DrawingCanvas({ modalIsOpen, setIsOpen, onResult  }) {
     });
     const { data: { text } } = await worker.recognize(imageBuffer);
     await worker.terminate();
-    if(rand===text){
-      console.log("Success");
+
+    if(text.match(rand)){
       onResult(true);
     }
     else{
-      console.log("failure")
       onResult(false);
     }
 
@@ -54,8 +52,7 @@ function DrawingCanvas({ modalIsOpen, setIsOpen, onResult  }) {
   }
 
   return (
-    <>
-      {/* <button onClick={openModal}>Open Modal</button> */}
+    <div className="bg-blue-900">
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -63,18 +60,17 @@ function DrawingCanvas({ modalIsOpen, setIsOpen, onResult  }) {
         contentLabel="Example Modal"
       >
 
-        <div className="overflow-auto mx-auto" >
+        <div className="overflow-auto mx-auto " >
           <div className="flex">
-            <p className="mx-auto font-bold text-lg text-center text-gray-700 mb-4">Please draw <b className="text-2xl">{rand}</b> below</p>
+            <p className="mx-auto font-bold text-lg text-center  text-gray-700 mb-4">Please draw <b className="text-2xl">{rand}</b> below</p>
           </div>
-          <CanvasDraw ref={canvasRef} hideGrid={true} className="mx-auto" />
+          <CanvasDraw ref={canvasRef} hideGrid={true} className="mx-auto bg-white" />
           <div className="flex">
-            <a onClick={() => handleSubmit()} className="btn ml-auto mt-4 w-full rounded-full border-none bg-blue-900text-gray-100 hover:bg-green-700">Submit</a>
+            <a onClick={() => handleSubmit()} className="btn ml-auto mt-4 w-full rounded-full border-none bg-blue-900 text-gray-100 hover:bg-green-700">Submit</a>
           </div>
-
         </div>
       </Modal>
-    </>
+    </div>
   );
 }
 

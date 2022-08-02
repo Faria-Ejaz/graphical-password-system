@@ -164,7 +164,7 @@ function LoginPage() {
             className="w-full md:w-1/3 bg-white rounded-lg"
             onSubmit={(e) => {
               e.preventDefault();
-              roundNumber === 0 && !isHuman && handleSubmit();
+              roundNumber === 0 && !isHuman && setShowCaptcha(true);
             }}
           >
             <div className="flex font-bold justify-center mt-6">

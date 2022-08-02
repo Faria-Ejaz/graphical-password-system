@@ -197,7 +197,7 @@ function RegistrationPage() {
                   <div className="flex items-center">
                     <i className="ml-3 fill-current text-gray-400 text-xs z-10 fas fa-user"></i>
                     <input
-                      className="-mx-6 px-8  w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+                      className="-mx-6 px-8  w-full border rounded px-3 py-2 bg-gray-700 focus:outline-none"
                       htmlFor="name"
                       id="name"
                       type="text"
@@ -241,6 +241,13 @@ function RegistrationPage() {
                   <button
                     className="w-full py-2 -ml-2.5 hover:bg-green-700 rounded-full bg-blue-900 text-gray-100  focus:outline-none"
                     type="submit"
+                    onClick={() => {
+                      if (roundNumber === 0 && !isHuman) {
+                        setShowCaptcha(true);
+                      } else {
+                        getImages();
+                      }
+                    }}
                   >
                     Search Category
                   </button>

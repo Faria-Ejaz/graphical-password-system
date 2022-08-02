@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.ReactModal__Overlay, .ReactModal__Overlay--after-open{
+    background-color: rgb(30 58 138) !important;
+
+}
