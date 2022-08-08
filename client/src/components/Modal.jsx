@@ -55,7 +55,7 @@ function Modal({
   return (
     <div className="mx-auto flex flex-col">
       <span className="mx-auto font-bold text-lg text-center text-gray-700 mb-4 p-5">
-        Select <b className="text-2xl">3</b> cubes from the image below 
+        Select <b className="text-2xl">3</b> squares from the image below 
         for Graphical Password Authentication.
       </span>
       <div
