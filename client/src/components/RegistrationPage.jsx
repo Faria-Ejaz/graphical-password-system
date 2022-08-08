@@ -197,7 +197,7 @@ function RegistrationPage() {
                   <div className="flex items-center">
                     <i className="ml-3 fill-current text-gray-400 text-xs z-10 fas fa-user"></i>
                     <input
-                      className="-mx-6 px-8  w-full border rounded px-3 py-2 bg-gray-700 focus:outline-none"
+                      className="-mx-6 px-8  w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
                       htmlFor="name"
                       id="name"
                       type="text"
