@@ -98,6 +98,8 @@ function RegistrationPage() {
   };
 
   const register = async () => {
+    setIsLoading(true);
+
     if (!name || !name.trim() || !email || !email.trim()) {
       toast.warning("Please enter your details");
     }
@@ -127,6 +129,8 @@ function RegistrationPage() {
         CryptoJS.enc.base64
       );
       try {
+        setIsLoading(true);
+
         const res = await axios.post("http://localhost:4000/api/register", {
           name,
           email,
@@ -135,16 +139,20 @@ function RegistrationPage() {
           passwordHints: passwordHintList,
         });
         if (res.status === 200) {
+          setIsLoading(false);
           toast.success(res?.data?.msg);
           navigate("/login");
         }
       } catch (error) {
         if (error.reponse.status === 500) {
+          setIsLoading(false);
           toast.error(error?.response?.data?.msg);
         } else {
           toast.error(error?.response?.data?.msg);
           sequences.current = [];
           setRoundNumber(0);
+          setIsLoading(false);
+
         }
       }
     });
@@ -257,6 +265,12 @@ function RegistrationPage() {
                     type="button"
                     onClick={() => register()}
                   >
+                    {isLoading && (
+                      <svg
+                        className="motion-safe:animate-spin h-5 w-5 bg-white ml-3 absolute"
+                        viewBox="0 0 24 24"
+                      ></svg>
+                    )}
                     Confirm Registration
                   </button>
                 )}
