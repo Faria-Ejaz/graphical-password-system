@@ -3,7 +3,8 @@
 ## Project Setup
 Installing Dependencies
 
-```cd client/
+```
+cd client/
 yarn
 
 cd server/
@@ -14,7 +15,7 @@ pip3 install -r requirements.txt
 python3 -m spacy download en
 ```
 ## Environment Variables
-### /server/.env
+#### /server/.env
 
 ```
 UNSPLASH_ACCESS_KEY=LOc3VonP_X330VX8lv1hiG41pDn96byd1BDCU7bVT0I
@@ -45,4 +46,5 @@ cd client
 yarn start
 
 cd flaskServer
-python3 server.py```
+python3 server.py
+```
