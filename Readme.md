@@ -19,7 +19,7 @@ python3 -m spacy download en
 
 ```
 UNSPLASH_ACCESS_KEY=LOc3VonP_X330VX8lv1hiG41pDn96byd1BDCU7bVT0I
-MONGODB_URL =mongodb+srv://fariaejaz:Rgu-66720@cluster0.wzfv8jz.mongodb.net/?retryWrites=true&w=majority
+MONGODB_URL =ADD_YOUR_MONGO_ATLAS_URL
 PORT=4000
 NUM_OF_IMAGES_IN_SET=9
 TOTAL_NUM_OF_ITERATIONS=4
