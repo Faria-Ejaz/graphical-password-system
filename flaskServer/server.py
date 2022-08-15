@@ -1,17 +1,17 @@
 import torch
-import requests
-from PIL import Image
-from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
 import spacy
+import requests
+from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
 from collections import Counter
+from PIL import Image
 from string import punctuation
 
 
 loc = "ydshieh/vit-gpt2-coco-en"
 
-vi_feature_extractor = ViTFeatureExtractor.from_pretrained(loc)
 auto_tokenizer = AutoTokenizer.from_pretrained(loc)
 decorder_model = VisionEncoderDecoderModel.from_pretrained(loc)
+vi_feature_extractor = ViTFeatureExtractor.from_pretrained(loc)
 decorder_model.eval()
 
 nlp = spacy.load("en_core_web_sm")
@@ -32,6 +32,7 @@ from flask import Flask
 from flask import jsonify, request
   
 app = Flask(__name__)
+
 from flask_cors import CORS
 cors = CORS(app)
 
